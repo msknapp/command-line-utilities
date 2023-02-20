@@ -1,0 +1,167 @@
+package primes
+
+import (
+	"fmt"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
+func TestIsPrime(t *testing.T) {
+	tester := assert.New(t)
+	tester.False(IsPrime(371))
+	tester.False(IsPrime(1))
+	tester.True(IsPrime(2))
+	tester.True(IsPrime(3))
+	tester.False(IsPrime(4))
+	tester.True(IsPrime(5))
+	tester.False(IsPrime(6))
+	tester.True(IsPrime(7))
+	tester.False(IsPrime(8))
+	tester.False(IsPrime(9))
+	tester.False(IsPrime(10))
+	tester.True(IsPrime(11))
+	tester.False(IsPrime(12))
+	tester.True(IsPrime(13))
+	tester.True(IsPrime(19))
+	tester.False(IsPrime(20))
+	tester.False(IsPrime(21))
+	tester.False(IsPrime(22))
+	tester.True(IsPrime(23))
+	tester.False(IsPrime(24))
+	tester.False(IsPrime(25))
+	tester.False(IsPrime(28))
+	tester.True(IsPrime(29))
+	tester.False(IsPrime(30))
+	tester.True(IsPrime(31))
+	tester.False(IsPrime(32))
+}
+func TestIsPrimeUnder20(t *testing.T) {
+	tester := assert.New(t)
+	tester.False(isPrimeUnder20(1))
+	tester.True(isPrimeUnder20(2))
+	tester.True(isPrimeUnder20(3))
+	tester.False(isPrimeUnder20(4))
+	tester.True(isPrimeUnder20(5))
+	tester.False(isPrimeUnder20(6))
+	tester.True(isPrimeUnder20(7))
+	tester.False(isPrimeUnder20(8))
+	tester.False(isPrimeUnder20(9))
+	tester.False(isPrimeUnder20(10))
+	tester.True(isPrimeUnder20(11))
+	tester.False(isPrimeUnder20(12))
+	tester.True(isPrimeUnder20(13))
+	tester.True(isPrimeUnder20(19))
+	tester.False(isPrimeUnder20(20))
+	tester.False(isPrimeUnder20(21))
+	tester.False(isPrimeUnder20(22))
+	tester.False(isPrimeUnder20(23))
+	tester.False(isPrimeUnder20(24))
+	tester.False(isPrimeUnder20(25))
+	tester.False(isPrimeUnder20(28))
+	tester.False(isPrimeUnder20(29))
+	tester.False(isPrimeUnder20(30))
+	tester.False(isPrimeUnder20(31))
+	tester.False(isPrimeUnder20(32))
+}
+
+func TestIsPrimeFrom20to97(t *testing.T) {
+	tester := assert.New(t)
+	tester.False(isPrimeFrom20to97(1))
+	tester.False(isPrimeFrom20to97(2))
+	tester.False(isPrimeFrom20to97(13))
+	tester.False(isPrimeFrom20to97(19))
+	tester.False(isPrimeFrom20to97(20))
+	tester.False(isPrimeFrom20to97(21))
+	tester.False(isPrimeFrom20to97(22))
+	tester.True(isPrimeFrom20to97(23))
+	tester.False(isPrimeFrom20to97(24))
+	tester.False(isPrimeFrom20to97(25))
+	tester.False(isPrimeFrom20to97(28))
+	tester.True(isPrimeFrom20to97(29))
+	tester.False(isPrimeFrom20to97(30))
+	tester.True(isPrimeFrom20to97(31))
+	tester.False(isPrimeFrom20to97(32))
+	tester.False(isPrimeFrom20to97(88))
+	tester.True(isPrimeFrom20to97(89))
+	tester.False(isPrimeFrom20to97(90))
+	tester.False(isPrimeFrom20to97(91))
+	tester.False(isPrimeFrom20to97(97))
+	tester.False(isPrimeFrom20to97(98))
+}
+
+func TestIsPrimeUnder529(t *testing.T) {
+	tester := assert.New(t)
+	tester.False(isPrimeUnder529(4))
+	tester.False(isPrimeUnder529(6))
+	tester.True(isPrimeUnder529(7))
+	tester.False(isPrimeUnder529(88))
+	tester.True(isPrimeUnder529(89))
+	tester.False(isPrimeUnder529(90))
+	tester.False(isPrimeUnder529(91))
+	tester.True(isPrimeUnder529(97))
+	tester.False(isPrimeUnder529(115))
+	tester.True(isPrimeUnder529(113))
+	tester.True(isPrimeUnder529(127))
+	tester.True(isPrimeUnder529(173))
+	tester.True(isPrimeUnder529(359))
+	tester.False(isPrimeUnder529(366))
+	tester.True(isPrimeUnder529(367))
+	tester.True(isPrimeUnder529(373))
+	tester.True(isPrimeUnder529(379))
+	fp := failurePointOf(4, isPrimeUnder529)
+	fmt.Printf("fails at %d\n", fp)
+}
+
+func TestIsPrimeUnder7927(t *testing.T) {
+	tester := assert.New(t)
+	tester.False(isPrimeUnder7927(4))
+	tester.False(isPrimeUnder7927(6))
+	tester.True(isPrimeUnder7927(7))
+	tester.False(isPrimeUnder7927(88))
+	tester.True(isPrimeUnder7927(89))
+	tester.False(isPrimeUnder7927(90))
+	tester.False(isPrimeUnder7927(91))
+	tester.True(isPrimeUnder7927(97))
+	tester.False(isPrimeUnder7927(115))
+	tester.True(isPrimeUnder7927(113))
+	tester.True(isPrimeUnder7927(127))
+	tester.True(isPrimeUnder7927(7723))
+	tester.True(isPrimeUnder7927(7853))
+	tester.True(isPrimeUnder7927(7919))
+	tester.True(isPrimeUnder7927(367))
+	tester.True(isPrimeUnder7927(373))
+	tester.True(isPrimeUnder7927(379))
+	fp := failurePointOf(500, isPrimeUnder7927)
+	fmt.Printf("fails at %d\n", fp)
+}
+
+func TestIsPrimeSixCheck(t *testing.T) {
+	tester := assert.New(t)
+	tester.True(IsPrime(500009))
+	// fp := failurePointOf(500000, IsPrime)
+	// tester.Equal(-1, fp)
+}
+
+func TestIsPrimeContinuousCheck(t *testing.T) {
+	tester := assert.New(t)
+	tester.False(IsPrimeContinuousCheck(1))
+	tester.True(IsPrimeContinuousCheck(2))
+	tester.True(IsPrimeContinuousCheck(3))
+	tester.False(IsPrimeContinuousCheck(4))
+	tester.True(IsPrimeContinuousCheck(5))
+	tester.False(IsPrimeContinuousCheck(6))
+	tester.True(IsPrimeContinuousCheck(7))
+	tester.False(IsPrimeContinuousCheck(8))
+	tester.False(IsPrimeContinuousCheck(9))
+	tester.False(IsPrimeContinuousCheck(10))
+	tester.True(IsPrimeContinuousCheck(11))
+	tester.False(IsPrimeContinuousCheck(12))
+	tester.True(IsPrimeContinuousCheck(13))
+}
+
+func TestPrimeCheckOverMillion(t *testing.T) {
+	for i := 1000001; i < 1000100; i++ {
+		fmt.Printf("%d -> %t", i, IsPrime(i))
+	}
+}

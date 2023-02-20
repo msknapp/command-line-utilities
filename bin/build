@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+for x in divisors collatz primes ; do
+    go build -o $x cmd/$x/main.go
+    mv $x ${GOBIN:-${GOPATH:-${HOME}/go}/bin}/$x
+done

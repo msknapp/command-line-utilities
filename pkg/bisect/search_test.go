@@ -1,0 +1,57 @@
+package bisect
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
+func TestIndex(t *testing.T) {
+	tester := assert.New(t)
+	x := []int{3, 8, 19, 32, 64, 71, 83, 84, 89, 95, 108, 132, 147, 173, 191}
+	c, b := closestIndex(x, 3)
+	tester.Equal(0, c)
+	tester.True(b)
+	c, b = closestIndex(x, 191)
+	tester.Equal(len(x)-1, c)
+	tester.True(b)
+	c, b = closestIndex(x, 192)
+	tester.Equal(-2, c)
+	tester.False(b)
+	c, b = closestIndex(x, 2)
+	tester.Equal(-1, c)
+	tester.False(b)
+	c, b = closestIndex(x, 4)
+	tester.Equal(1, c)
+	tester.False(b)
+	c, b = closestIndex(x, 7)
+	tester.Equal(1, c)
+	tester.False(b)
+	c, b = closestIndex(x, 8)
+	tester.Equal(1, c)
+	tester.True(b)
+	c, b = closestIndex(x, 9)
+	tester.Equal(2, c)
+	tester.False(b)
+	c, b = closestIndex(x, 18)
+	tester.Equal(2, c)
+	tester.False(b)
+	c, b = closestIndex(x, 19)
+	tester.Equal(2, c)
+	tester.True(b)
+	c, b = closestIndex(x, 190)
+	tester.Equal(len(x)-1, c)
+	tester.False(b)
+	c, b = closestIndex(x, 173)
+	tester.Equal(len(x)-2, c)
+	tester.True(b)
+	c, b = closestIndex(x, 172)
+	tester.Equal(len(x)-2, c)
+	tester.False(b)
+	c, b = closestIndex(x, 148)
+	tester.Equal(len(x)-2, c)
+	tester.False(b)
+	c, b = closestIndex(x, 85)
+	tester.Equal(8, c)
+	tester.False(b)
+}
