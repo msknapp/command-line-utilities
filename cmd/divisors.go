@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func main() {
+func Divisors() *cobra.Command {
 	var proper bool
 	var unsorted bool
 	var delim string
@@ -48,8 +48,5 @@ func main() {
 	c.Flags().BoolVarP(&unsorted, "unsorted", "s", false, "don't sort factors, it may be slightly faster")
 	c.Flags().BoolVarP(&printPrime, "printPrime", "P", false, "if it is a prime then print the word prime")
 	c.Flags().StringVarP(&delim, "delimiter", "d", ", ", "Sets the delimiter between values")
-	if err := c.Execute(); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
+	return c
 }

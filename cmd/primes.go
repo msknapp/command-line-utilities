@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func main() {
+func Primes() *cobra.Command {
 	var theInt int64
 	var theStartNumber int64
 	var theStopNumber int64
@@ -87,8 +87,5 @@ func main() {
 	c.Flags().BoolVarP(&printIt, "print", "p", false, "print true or false instead of changing the exit status code")
 	c.Flags().StringVarP(&delimiter, "delimiter", "d", " ", "the delimiter between values")
 	c.Flags().IntVarP(&perLine, "per-line", "l", -1, "the number of integers to print on one line.  by default it never wraps onto a new line.")
-	if err := c.Execute(); err != nil {
-		fmt.Fprintf(os.Stderr, err.Error()+"\n")
-		os.Exit(1)
-	}
+	return c
 }

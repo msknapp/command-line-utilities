@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func main() {
+func Collatz() *cobra.Command {
 	var delim string
 	c := &cobra.Command{
 		Use:   "collatz",
@@ -39,8 +39,5 @@ func main() {
 		},
 	}
 	c.Flags().StringVarP(&delim, "delimiter", "d", ", ", "sets the delimiter")
-	if err := c.Execute(); err != nil {
-		fmt.Fprintf(os.Stderr, err.Error())
-		os.Exit(1)
-	}
+	return c
 }
